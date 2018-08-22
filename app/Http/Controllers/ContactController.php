@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Contact;
+use DB;
 
 class ContactController extends Controller
 {
@@ -17,8 +18,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-        return view('contacts.index',compact('contacts'));
+        $contacts = User::find(Auth::id())->contacts;
+    return view('contacts.index')->with('contacts',$contacts);
     }
 
     /**
@@ -51,6 +52,7 @@ class ContactController extends Controller
         ]);
 
         $contact = new Contact;
+        $contact->user_id = Auth::id();
         $contact->name = $request->name;
         $contact->address = $request->address;
         $contact->postcode = $request->postcode;
@@ -127,6 +129,16 @@ class ContactController extends Controller
         //
         $contact = Contact::find($id);
         $contact->delete();
-        return redirect('contacts')->with('succes','Contact Deleted');
+        return redirect('contacts')->with('success','Contact Deleted');
+    }
+
+
+    public function search(Request $request){
+
+  
+            //$contacts = DB::table('contacts')->where('name','LIKE','%'.$request->query.'%');
+            $query = $request->input('query');
+            $contacts = Contact::where('name','LIKE',$query.'%')->get();                              
+    return view('contacts.index')->with('contacts',$contacts/*,Contact::paginate(10)*/);;
     }
 }

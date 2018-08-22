@@ -1,12 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-
+<br>
 <h1 class="page-header remove-margin">
     Contacts
-    <a class="btn btn-primary pull-right" href="{{ URL::to('contacts/create') }}">Add</a>
+    <a class="btn btn-primary " href="{{ URL::to('contacts/create') }}">Add</a>
 </h1>
+{!! Form::open(['action'=>['ContactController@search'],'method'=>'POST'])!!}
+{{ csrf_field() }}
+<div class="input-group">
+{{Form::text('query','',['class'=>"form-control", 'placeholder'=>"Place the name to search"])}}
 
+<button type="submit" class="btn btn-info">search</button>
+</div>
+
+{!! Form::close()!!}
+<br>
 @if(count($contacts)>0)
 <table class="table table-striped table-bordered">
     <thead>
@@ -38,13 +47,15 @@
               </td>
 
       </tr>
+      
         @endforeach
 
 
 
     </tbody>
 </table>
+
         @else
-        <p>No jobs found</p>
+        <p>No contacts found</p>
         @endif  
 @endsection
