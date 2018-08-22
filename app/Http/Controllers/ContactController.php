@@ -9,23 +9,28 @@ use App\User;
 use App\Contact;
 use DB;
 
+/**
+ * Class that control CRUD funcionality for contacts
+ */
 class ContactController extends Controller
 {
+
+
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a list of contacts from the current user.
      */
     public function index()
     {
         $contacts = User::find(Auth::id())->contacts;
-    return view('contacts.index')->with('contacts',$contacts);
+        return view('contacts.index')->with('contacts',$contacts);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -34,10 +39,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Save a contact for a user.
      */
     public function store(Request $request)
     {
@@ -45,11 +47,11 @@ class ContactController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'address'=>'required',
-            'postcode'=>'required',
-            'telephone'=>'required',
-            'email'=>'required',
-            'dob'=>'required'
-        ]);
+            'postcode'=>'nullable',
+            'telephone'=>'numeric',
+            'email'=>'nullable|email',
+            'dob'=>'nullable'
+            ]);
 
         $contact = new Contact;
         $contact->user_id = Auth::id();
@@ -64,22 +66,10 @@ class ContactController extends Controller
         return redirect('contacts')->with('success','Contact Created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
-    }
+
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * Edit a contact for the user.
      */
     public function edit($id)
     {
@@ -89,11 +79,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * Update a contact for a user.
      */
     public function update(Request $request, $id)
     {
@@ -101,11 +87,11 @@ class ContactController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'address'=>'required',
-            'postcode'=>'required',
-            'telephone'=>'required',
-            'email'=>'required',
-            'dob'=>'required'
-        ]);
+            'postcode'=>'nullable',
+            'telephone'=>'nullable',
+            'email'=>'nullable',
+            'dob'=>'nullable'
+            ]);
 
         $contact = Contact::find($id);
         $contact->name = $request->name;
@@ -119,10 +105,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * Delete the contact for the user.
      */
     public function destroy($id)
     {
@@ -132,13 +115,12 @@ class ContactController extends Controller
         return redirect('contacts')->with('success','Contact Deleted');
     }
 
-
+    /**
+     * Show a list of contacts at the search for a specific user.
+     */
     public function search(Request $request){
-
-  
-            //$contacts = DB::table('contacts')->where('name','LIKE','%'.$request->query.'%');
-            $query = $request->input('query');
-            $contacts = Contact::where('name','LIKE',$query.'%')->get();                              
-    return view('contacts.index')->with('contacts',$contacts/*,Contact::paginate(10)*/);;
+        $query = $request->input('query');
+        $contacts = Contact::where('name','LIKE',$query.'%')->where('user_id',Auth::id())->get();                              
+        return view('contacts.search_results')->with('contacts',$contacts);;
     }
 }

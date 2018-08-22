@@ -12,17 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 
-
-//Route::resource('contacts', 'ContactController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/contacts/search', 'ContactController@search');
 Route::group(['middleware'=>'auth'],function(){
-    Route::resource('contacts','ContactController');
-    
+	Route::resource('contacts','ContactController');
+	
 });
