@@ -7,9 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateContactsTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * migration for create contacts table
      */
     public function up()
     {
