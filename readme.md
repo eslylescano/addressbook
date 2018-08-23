@@ -4,10 +4,15 @@
 
 AddresBook is a simple CRUD for manage contacts for a user created in Laravel, where you can create, add,delete and update contacts.
 
+## Requirements
+Have a php version 7.0.0 install.
 
 ## Configuration the project
 
-1) Download the project.
+1) Download the project
+(git clone https://github.com/eslylescano/addressbook.git projectname)
+cd projectname
+composer install(you need to have composer installed)
 
 2) Create a database call: address_book(for example).
 
@@ -21,6 +26,8 @@ DB_USERNAME=root
 DB_PASSWORD=root
 
 If you are running in localhost, leave by default DB_HOST=127.0.0.1; if not, add the ip from the server that you are using.
+
+Change port to 3306 if you are running in cloud server.
 
 For DB_DATABASE,DB_USERNAME,DB_PASSWORD change to your own configuration if the you have create a diferent database name, and diferent username and pasword.
 
@@ -37,14 +44,9 @@ b) username:user2@gmail.com
 
 c) username:user3@gmail.com
    password:123456
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Aplication in a real server
+http://eslylescano.com/addressbook/
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Portfolio from the developer
+http://eslylescano.com
