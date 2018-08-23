@@ -1,3 +1,4 @@
+<!-- Messages to show to user-->
 @if(count($errors)>0)
 
     @foreach($errors->all() as $error)

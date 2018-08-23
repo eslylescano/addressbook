@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<!-- showing results in search-->
 @section('content')
 <br>
 <h1 class="page-header remove-margin">

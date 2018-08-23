@@ -1,3 +1,4 @@
+<!--Template reusable in every view-->
 <!doctype html>
 <html lang="en">
   <head>

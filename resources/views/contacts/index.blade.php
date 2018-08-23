@@ -1,5 +1,7 @@
+
 @extends('layouts.app')
 
+<!-- showing contacts-->
 @section('content')
 <br>
 <h1 class="page-header remove-margin">

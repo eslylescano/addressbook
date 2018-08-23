@@ -27,6 +27,9 @@ class User extends Authenticatable
     'password', 'remember_token',
     ];
 
+    /**
+     * Adding relation one to many, one user have many contacts
+     */
     public function contacts(){
         return $this->hasMany('App\Contact');
     }

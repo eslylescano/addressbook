@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<!-- creating contacts-->
 @section('content') 
 <h1 class="page-header">Create Contact</h1>
 

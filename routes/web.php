@@ -5,22 +5,23 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
+//route for welcome page
 Route::get('/', function () {
 	return view('welcome');
 });
 
-
+//routes for authentication
 Auth::routes();
-
+//route for home
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/contacts/search', 'ContactController@search');
+
+
+//middleware for allow only users to use crud funtionality
 Route::group(['middleware'=>'auth'],function(){
 	Route::resource('contacts','ContactController');
+	Route::post('/contacts/search', 'ContactController@search');
 	
 });

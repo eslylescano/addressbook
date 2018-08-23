@@ -28,13 +28,14 @@ For DB_DATABASE,DB_USERNAME,DB_PASSWORD change to your own configuration if the 
 
 ## Default data for testing the application
 For testing reasons I have created 3 users:
-a) username:user1@gmail.com
-   password:123456
 
 a) username:user1@gmail.com
    password:123456
 
-a) username:user1@gmail.com
+b) username:user2@gmail.com
+   password:123456
+
+c) username:user3@gmail.com
    password:123456
 ## Contributing
 
