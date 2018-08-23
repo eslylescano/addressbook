@@ -2,25 +2,32 @@
 
 ## About AddressBook
 
-AddresBook is a simple CRUD for manage contacts for a user created in Laravel, where you can create, add,delete and update contacts.
+AddresBook is a simple CRUD for manage contacts for a user created in Laravel, where you can create, add,delete and update contacts. Also have the funcionality of search contacts int the database.
 
-## Requirements
-Have a php version 7.0.0 install.
+## Installation
+Have php version 7.0.0 installed or higher.
+
+1)Download the project(git clone https://github.com/eslylescano/addressbook.git projectname)
+
+2)cd projectname
+
+3)run this command: composer install (you need to have composer installed)
+https://getcomposer.org
+
+4) create .env file in the root directory using .env.example file
+
+5)run this command:php artisan key:generate
+
+For more details watch: https://www.youtube.com/watch?v=QwWnXNyhioM
 
 ## Configuration the project
+1) Create a database call: address_book(for example).
 
-1) Download the project
-(git clone https://github.com/eslylescano/addressbook.git projectname)
-cd projectname
-composer install(you need to have composer installed)
-
-2) Create a database call: address_book(for example).
-
-3) Open .env file and change the following:
+2) Open .env file and change the following:
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
-DB_PORT=8889
+DB_PORT=3306
 DB_DATABASE=address_book
 DB_USERNAME=root
 DB_PASSWORD=root
